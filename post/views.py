@@ -37,12 +37,19 @@ def detail_post(request, pk):
     }
     return render(request, 'post/detail_post.html', context)
 
-def delete_post(request):
-    return render(request, 'post/delete_post.html')
-
 def update_post(request, pk):
     update_post = Post.objects.get(id=pk)
+    if request.method == "POST":
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        update_post.title = title
+        update_post.content = content
+        update_post.save()
+        return redirect('detail_post', pk=update_post.pk)
     context = {
         'update_post': update_post
     }
     return render(request, 'post/update_post.html', context)
+
+def delete_post(request):
+    return render(request, 'post/delete_post.html')

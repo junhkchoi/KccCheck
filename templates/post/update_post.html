@@ -6,6 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>게시물 수정</h1>
+    <h1>공지글 수정</h1>
+    <form action="{% url 'update_post' update_post.pk %}" method='post'>
+        {% csrf_token %}
+        <label for="title">제목</label>
+        <input type="text" name='title' value={{update_post.title}}>
+        <br>
+        <label for="content">내용</label>
+        <input type="text" name='content' value={{update_post.content}}>
+        <br>
+        <button type='submit'>수정</button>
+    </form>
+
 </body>
 </html>
