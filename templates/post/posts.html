@@ -7,6 +7,16 @@
 </head>
 <body>
     <h1>공지사항 페이지입니다.</h1>
+
+    {% for post in posts %}
+        <a href={% url 'detail_post' post.pk %}>
+            <div>
+                <div>{{ post.title }}, {{ post.create_at }}</div>
+            </div>
+        </a>
+    {% empty %}
+        <p>아직 게시글이 없어요!</p>
+    {% endfor %}
     <a href="{% url 'create_post' %}"><button>글 작성하기</button></a>
 </body>
 </html>

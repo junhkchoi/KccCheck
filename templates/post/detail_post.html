@@ -9,5 +9,7 @@
     <h1>제목: {{ detail_post.title }}</h1>
     <hr>
     <h2>내용: {{ detail_post.content }}</h2>
+    <a href={% url 'update_post' %}><button>게시물 수정</button></a>
+    <a href={% url 'delete_post' %}><button>게시물 삭제</button></a>
 </body>
 </html>

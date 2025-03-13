@@ -4,7 +4,11 @@ from django.urls import reverse
 from . models import Post
 
 def posts(request):
-    return render(request, 'post/posts.html')
+    posts = Post.objects.all()
+    context = {
+        'posts': posts
+    }
+    return render(request, 'post/posts.html', context)
 
 # def create_post(request):
 #     if request.method == 'POST':
@@ -36,5 +40,9 @@ def detail_post(request, pk):
 def delete_post(request):
     return render(request, 'post/delete_post.html')
 
-def update_post(request):
-    return render(request, 'post/update_post.html')
+def update_post(request, pk):
+    update_post = Post.objects.get(id=pk)
+    context = {
+        'update_post': update_post
+    }
+    return render(request, 'post/update_post.html', context)
